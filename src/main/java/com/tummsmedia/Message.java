@@ -17,6 +17,9 @@ public class Message {
     @Column(nullable = false)
     String text;
 
+    public Message() {
+    }
+
     public Message(String text) {
         this.text = text;
     }

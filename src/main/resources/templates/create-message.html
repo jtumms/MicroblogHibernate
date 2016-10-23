@@ -20,15 +20,16 @@ Hello, {{name}}!
 <br>
 <form action="/edit" method="post">
     <input type="text" name="id" placeholder="Enter number from message list">
-    <input type="text" name="edit">
+    <input type="text" name="edit" placeholder="Edit message">
     <button type="submit">Edit</button>
+
 </form>
 <br>
 <Strong>Messages:</Strong> <br>
 <form action="/delete" method="post">
 <ol>
     {{#messages}}
-    <li>{{text}}</li>
+    <p>{{id}} --  {{text}}</p>
     {{/messages}}
 </ol>
 </form>

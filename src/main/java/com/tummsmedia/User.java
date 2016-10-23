@@ -21,23 +21,12 @@ public class User {
     @Column(nullable = false)
     String password;
 
-    @Column(nullable = false)
-    ArrayList<Message> messages = new ArrayList<>();
-
     public User() {
     }
 
     public User(String name, String password) {
-        this.id = id;
         this.name = name;
         this.password = password;
-    }
-
-    public User(String name, String password, ArrayList<Message> messages) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.messages = messages;
     }
 
     public Integer getId() {
@@ -64,11 +53,4 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(ArrayList<Message> messages) {
-        this.messages = messages;
-    }
 }
