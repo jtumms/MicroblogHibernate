@@ -17,6 +17,9 @@ public class Message {
     @Column(nullable = false)
     String text;
 
+//    @ManyToOne
+//    User user;
+
     public Message() {
     }
 
