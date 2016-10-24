@@ -31,7 +31,10 @@ public class MicroblogHibernateController {
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String enterLogin(Model model, String loginName, String password, HttpSession session) {
         User user = users.findFirstByName(loginName);
-        if(!user.password.equals(password)){
+        if(user == null) {
+            return "redirect:/newuser";
+        }
+        else if(!user.password.equals(password)){
             return "redirect:/login";
         }
         session.setAttribute("loginName", loginName);
@@ -49,14 +52,19 @@ public class MicroblogHibernateController {
         return "redirect:/";
     }
     @RequestMapping(path = "/create-message", method = RequestMethod.GET)
-    public String createMessage(Model model){
+    public String createMessage(Model model, HttpSession session){
+        Object s = session.getAttribute("loginName");
+        User user = users.findFirstByName(s.toString());
+        int userId = user.id;
         Iterable<Message> messagelist = messages.findAll();
         model.addAttribute("messages", messagelist);
         return "create-message";
     }
     @RequestMapping(path = "/create-message", method = RequestMethod.POST)
-    public String addMessage(String message) {
-        Message m = new Message(message);
+    public String addMessage(String message, HttpSession session) {
+        Object s = session.getAttribute("loginName");
+        User user = users.findFirstByName(s.toString());
+        Message m = new Message(message, user);
         messages.save(m);
         return "redirect:/create-message";
     }

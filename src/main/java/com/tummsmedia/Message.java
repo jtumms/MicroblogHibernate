@@ -17,10 +17,15 @@ public class Message {
     @Column(nullable = false)
     String text;
 
-//    @ManyToOne
-//    User user;
+    @ManyToOne
+    User user;
 
     public Message() {
+    }
+
+    public Message(String text, User user) {
+        this.text = text;
+        this.user = user;
     }
 
     public Message(String text) {
